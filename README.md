@@ -39,4 +39,23 @@ comment = Comment(content="Sample Comment")
 your_object.comments.add(comment)
 ```
 
+5. Query comments linked to your object.
+
+There are multiple methods to query comments,
+
+1. Helper function that queries by app_label, model & id of object.
+
+```py
+from django_simple_comments.utils.functions import get_comments
+
+comments = get_comments("app_label", "your_model", 1)
+```
+
+2. Query by reverse relation
+
+```py
+object = YourModel.objects.first()
+comments = object.comments.all() # replace "comments" with your field name
+```
+
 Refer the following for more info: https://docs.djangoproject.com/en/4.2/ref/contrib/contenttypes/#generic-relations
