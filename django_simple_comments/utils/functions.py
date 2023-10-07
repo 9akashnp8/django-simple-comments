@@ -16,5 +16,6 @@ def get_comments(app_label: str, model: str, object_id: str):
             to the give object.
     """
     ct = ContentType.objects.get(app_label=app_label, model=model)
-    comments = Comment.objects.filter(content_object=ct, object_id=object_id)
+    comments = Comment.objects.filter(
+        content_type=ct, object_id=object_id).order_by("-created_at")
     return comments
